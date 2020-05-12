@@ -35,8 +35,8 @@ class S(BaseHTTPRequestHandler):
 
 
         #print message
-        #open (filename , "w").write (data)
-        #os.startfile(filename, "print")
+        open (filename , "w").write (data)
+        os.startfile(filename, "print")
         
         #text to speech 
         myobj = gTTS(text=data, lang=language, slow=False)
