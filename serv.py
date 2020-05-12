@@ -4,10 +4,13 @@ from gtts import gTTS
 import os 
 import tempfile
 import urllib.parse
-
-
+#<form action='/send' method='post'><h2>Send Message</h2><input type='text' name='message'></input><input type='submit' value='submit'></input> </form>
+#setup for text to speech and printing
 language = 'en'
 filename = tempfile.mktemp(".txt")
+
+with open('index.html', 'r') as f:
+    html_string = f.read()
 
 class S(BaseHTTPRequestHandler):
     def _set_response(self):
@@ -18,7 +21,7 @@ class S(BaseHTTPRequestHandler):
     def do_GET(self):
         logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
         self._set_response()
-        self.wfile.write("<form action='/send' method='post'><h2>Send Message</h2><input type='text' name='message'></input><input type='submit' value='submit'></input> </form>".encode('utf-8'))
+        self.wfile.write(html_string.encode('utf-8'))
 
     def do_POST(self):
         content_length = int(self.headers['Content-Length'])
